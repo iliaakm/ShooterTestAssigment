@@ -78,7 +78,7 @@ public abstract class Gun : MonoBehaviour
     {
         if (reloading)
         {
-            PlayEmptySound();
+            //PlayEmptySound();
             return false;
         }
 
