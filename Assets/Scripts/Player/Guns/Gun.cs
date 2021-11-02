@@ -78,9 +78,7 @@ public abstract class Gun : MonoBehaviour
         GunProjectile projectile = Instantiate(gunProjectilePref.gameObject,
             gunShootPoint).GetComponent<GunProjectile>();   //TODO mess with parent object
 
-        projectile.DamageAmount = gunDamage;
-        projectile.MoveSpeed = gunProjectileSpeed;
-        projectile.
+        projectile.InitProjectile(gunDamage, gunProjectileSpeed);
 
         return projectile;
     }
