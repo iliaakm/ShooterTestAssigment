@@ -14,7 +14,7 @@ public class DamageReceiver : MonoBehaviour, IDamageable
     float maxHealthPoints;
     float currentHealthPoints;
 
-    public UnityEvent onDeath;
+    public UnityEvent onDeath { get; set; }
 
     private void Awake()
     {
