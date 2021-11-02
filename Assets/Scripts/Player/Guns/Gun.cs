@@ -11,12 +11,15 @@ public abstract class Gun : MonoBehaviour
     [SerializeField]
     protected float gunDamage;
     [SerializeField]
-    protected float gunProjectileSpeed;
+    protected float gunProjectileVelocity;
     [SerializeField]
     protected float gunReloadTime;
 
     [SerializeField]
     protected int gunClipSize;
+
+    [SerializeField]
+    GameObject gunProjectilePref;
 
     [SerializeField]
     protected AudioSource gunSoundSource;
@@ -29,7 +32,13 @@ public abstract class Gun : MonoBehaviour
 
     public virtual void Shoot()
     {
+        //TODO Add Object pooling
+        GameObject 
+    }
 
+    private void Update()
+    {
+        
     }
 
     public virtual void Reload()
