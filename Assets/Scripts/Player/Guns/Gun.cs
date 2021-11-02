@@ -11,7 +11,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField]
     protected float gunDamage;
     [SerializeField]
-    protected float gunProjectileVelocity;
+    protected float gunProjectileSpeed;
     [SerializeField]
     protected float gunReloadTime;
 
@@ -19,7 +19,9 @@ public abstract class Gun : MonoBehaviour
     protected int gunClipSize;
 
     [SerializeField]
-    GameObject gunProjectilePref;
+    protected DamageGiver gunProjectilePref;
+    [SerializeField]
+    protected Transform gunShootPoint;
 
     [SerializeField]
     protected AudioSource gunSoundSource;
@@ -29,20 +31,57 @@ public abstract class Gun : MonoBehaviour
     protected AudioClip gunReloadSound;
 
     private int gunAmmoInClip;
+    float timeBetweenShots, timeLastShot;
+    bool reloading;
 
-    public virtual void Shoot()
+    private void Start()
     {
-        //TODO Add Object pooling
-        GameObject 
+        timeBetweenShots = 1f / gunFireRate;
     }
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            TryShoot();
+        }
+    }
+
+    public virtual void TryShoot()
+    {
+        if (CanShoot()) Shoot();
+    }
+
+    bool CanShoot()
+    {
+        if (Time.time - timeLastShot > timeBetweenShots)
+        {
+            timeLastShot = Time.time;
+            return true;
+        }
+        return false;
+    }
+
+    public virtual void Shoot()
+    {
+        DamageGiver projectile = CreateProjectile();
         
     }
 
     public virtual void Reload()
     {
 
+    }
+    public virtual DamageGiver CreateProjectile()
+    {
+        //TODO Add Object pooling
+        GunProjectile projectile = Instantiate(gunProjectilePref.gameObject,
+            gunShootPoint).GetComponent<GunProjectile>();   //TODO mess with parent object
+
+        projectile.DamageAmount = gunDamage;
+        projectile.MoveSpeed = gunProjectileSpeed;
+        projectile.
+
+        return projectile;
     }
 }
