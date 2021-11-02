@@ -34,9 +34,11 @@ public abstract class Gun : MonoBehaviour
     float timeBetweenShots, timeLastShot;
     bool reloading;
 
+
     private void Start()
     {
         timeBetweenShots = 1f / gunFireRate;
+        FieldCheck();
     }
 
     private void Update()
@@ -45,6 +47,21 @@ public abstract class Gun : MonoBehaviour
         {
             TryShoot();
         }
+    }
+
+    void FieldCheck()
+    {
+        if (gunAccuracy == 0) Debug.LogWarning("Accuracy not setted");
+        if (gunFireRate == 0) Debug.LogWarning("FireRate not setted");
+        if (gunDamage == 0) Debug.LogWarning("Damage not setted");
+        if (gunProjectileSpeed == 0) Debug.LogWarning("ProjectileSpeed not setted");
+        if (gunReloadTime == 0) Debug.LogWarning("ReloadTime not setted");
+        if (gunClipSize == 0) Debug.LogWarning("ClipSize not setted");
+        if (gunProjectilePref == null) Debug.LogWarning("ProjectilePref not setted");
+        if (gunShootPoint == null) Debug.LogWarning("ShootPoint not setted");
+        if (gunSoundSource == null) Debug.LogWarning("SoundSource not setted");
+        if (gunShootSound == null) Debug.LogWarning("ShootSound not setted");
+        if (gunReloadSound == null) Debug.LogWarning("ReloadSound not setted");
     }
 
     public virtual void TryShoot()
