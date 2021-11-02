@@ -64,8 +64,7 @@ public abstract class Gun : MonoBehaviour
 
     public virtual void Shoot()
     {
-        DamageGiver projectile = CreateProjectile();
-        
+        DamageGiver projectile = CreateProjectile();        
     }
 
     public virtual void Reload()
@@ -78,7 +77,7 @@ public abstract class Gun : MonoBehaviour
         GunProjectile projectile = Instantiate(gunProjectilePref.gameObject,
             gunShootPoint).GetComponent<GunProjectile>();   //TODO mess with parent object
 
-        projectile.InitProjectile(gunDamage, gunProjectileSpeed);
+        projectile.InitProjectile(gunDamage, gunProjectileSpeed, gunShootPoint.position);
 
         return projectile;
     }
