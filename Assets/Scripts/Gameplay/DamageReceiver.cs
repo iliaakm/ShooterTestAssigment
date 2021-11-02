@@ -1,30 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class DamageReceiver : MonoBehaviour
+public interface IDamageable
 {
-    UnityEngine.Events.UnityEvent onDeath;
+    void TakeDamage(int damageAmount);
+}
+
+public class DamageReceiver : MonoBehaviour, IDamageable
+{
     [SerializeField]
-    int hitPoints = 5;
-    int currentHitPoints;
+    int maxHealthPoints;
+    int currentHealthPoints;
+
+    public UnityEvent onDeath;
 
     private void Awake()
     {
-        currentHitPoints = hitPoints;
+        currentHealthPoints = maxHealthPoints;
     }
 
-    public void TakeDamage(int damageAmount)
+    void IDamageable.TakeDamage(int damageAmount)
     {
-        currentHitPoints -= damageAmount;
+        currentHealthPoints -= damageAmount;
 
-        if(currentHitPoints <= 0)
+        if (currentHealthPoints <= 0)
         {
-            if(onDeath != null)
+            if (onDeath != null)
             {
                 onDeath.Invoke();
             }
             Destroy(gameObject);
         }
-    }    
+    }
 }
