@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class DamageGiver : MonoBehaviour
 {
     public float DamageAmount { get; set; }
-    UnityEvent onHit;
+    public UnityEvent OnHit { get; set; }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -27,9 +27,9 @@ public class DamageGiver : MonoBehaviour
     void Hit(IDamageable damageReceiver)
     {
         damageReceiver.TakeDamage(DamageAmount);
-        if(onHit != null)
+        if(OnHit != null)
         {
-            onHit.Invoke();
+            OnHit.Invoke();
         }
     }
 }
