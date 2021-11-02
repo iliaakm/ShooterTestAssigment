@@ -49,7 +49,7 @@ public abstract class Gun : MonoBehaviour
         }
     }
 
-    void FieldCheck()
+    public virtual void FieldCheck()
     {
         if (gunAccuracy == 0) Debug.LogWarning("Accuracy not setted");
         if (gunFireRate == 0) Debug.LogWarning("FireRate not setted");
@@ -81,18 +81,29 @@ public abstract class Gun : MonoBehaviour
 
     public virtual void Shoot()
     {
-        DamageGiver projectile = CreateProjectile();        
+        DamageGiver projectile = CreateProjectile();      
+        
     }
 
     public virtual void Reload()
     {
 
     }
+
+    public virtual void PlayShotSound()
+    {
+        if (gunSoundSource && gunShootSound)
+        {
+            gunSoundSource.clip = gunShootSound;
+            gunSoundSource.Play();
+        }
+    }
+
     public virtual DamageGiver CreateProjectile()
     {
         //TODO Add Object pooling
-        GunProjectile projectile = Instantiate(gunProjectilePref.gameObject,
-            gunShootPoint).GetComponent<GunProjectile>();   //TODO mess with parent object
+        GunProjectile projectile = Instantiate(gunProjectilePref.gameObject, null, 
+            true).GetComponent<GunProjectile>();   //TODO mess with parent object
 
         projectile.InitProjectile(gunDamage, gunProjectileSpeed, gunShootPoint.position);
 
