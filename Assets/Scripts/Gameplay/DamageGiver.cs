@@ -16,7 +16,7 @@ public class DamageGiver : MonoBehaviour
 
     void HitCheck(GameObject hitSubject)
     {
-        DamageReceiver damageReceiver = hitSubject.GetComponent<DamageReceiver>();
+        IDamageable damageReceiver = hitSubject.GetComponent<IDamageable>();
         {
             if (damageReceiver != null)
             {
@@ -26,9 +26,9 @@ public class DamageGiver : MonoBehaviour
         
     }
 
-    void Hit(DamageReceiver damageReceiver)
+    void Hit(IDamageable damageReceiver)
     {
-        damageReceiver.TakeDamage(damageAmount);
+        ((IDamageable)damageReceiver).TakeDamage(damageAmount);
         if(onHit != null)
         {
             onHit.Invoke();
