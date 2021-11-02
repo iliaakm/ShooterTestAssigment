@@ -766,13 +766,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunAccuracy: 666
-  gunFireRatePerMin: 60
+  gunFireRatePerMin: 200
   gunDamage: 1
   gunProjectileSpeed: 100
-  gunReloadTime: 1
-  gunClipSize: 5
+  gunReloadTime: 2
+  gunAmmoClipSize: 5
   gunProjectilePref: {fileID: 7805768862353676485, guid: d91cc5bf1b5b91046926f97f4140f1c9, type: 3}
   gunShootPoint: {fileID: 676916915}
   gunSoundSource: {fileID: 1637726525}
-  gunShootSound: {fileID: 0}
-  gunReloadSound: {fileID: 0}
+  gunShootSound: {fileID: 8300000, guid: ddcda2afcfc97b644a670b47ed937197, type: 3}
+  gunReloadSound: {fileID: 8300000, guid: 0e2fc5ebfe1c3e84c813eb28af550a27, type: 3}
+  gunEmptySound: {fileID: 8300000, guid: 9cdd0fc44bbb30245a10b9a8c2c93750, type: 3}

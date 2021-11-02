@@ -29,6 +29,8 @@ public abstract class Gun : MonoBehaviour
     protected AudioClip gunShootSound;
     [SerializeField]
     protected AudioClip gunReloadSound;
+    [SerializeField]
+    protected AudioClip gunEmptySound;
 
     private int gunAmmoInClip;
     private float timeBetweenShots, timeLastShot;
@@ -73,10 +75,15 @@ public abstract class Gun : MonoBehaviour
     protected virtual bool CanShoot()
     {
         if (reloading)
+        {
+            PlayEmptySound();
             return false;
+        }
 
         if (!CheckAmmo())
+        {
             return false;
+        }
 
         if (Time.time - timeLastShot > timeBetweenShots)
         {
@@ -91,7 +98,7 @@ public abstract class Gun : MonoBehaviour
         DamageGiver projectile = CreateProjectile();
         PlayShotSound();
 
-        gunAmmoClipSize--;
+        gunAmmoInClip--;
         CheckAmmo();
     }
 
@@ -104,10 +111,12 @@ public abstract class Gun : MonoBehaviour
 
     protected  virtual IEnumerator ReloadCor()
     {
+        PlayReloadSound();
         reloading = true;
         yield return new WaitForSeconds(gunReloadTime);
         reloading = false;
         gunAmmoInClip = gunAmmoClipSize;
+        reloadCor = null;
     }
 
     protected virtual bool CheckAmmo()
@@ -122,9 +131,24 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual void PlayShotSound()
     {
-        if (gunSoundSource && gunShootSound)
+        PlaySound(gunShootSound);
+    }
+
+    protected virtual void PlayEmptySound()
+    {
+        PlaySound(gunEmptySound);
+    }
+
+    protected virtual void PlayReloadSound()
+    {
+        PlaySound(gunReloadSound);
+    }
+
+    protected void PlaySound(AudioClip soundClip)
+    {
+        if (gunSoundSource && soundClip)
         {
-            gunSoundSource.clip = gunShootSound;
+            gunSoundSource.clip = soundClip;
             gunSoundSource.Play();
         }
     }
