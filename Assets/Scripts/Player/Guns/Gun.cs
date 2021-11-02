@@ -16,7 +16,7 @@ public abstract class Gun : MonoBehaviour
     protected float gunReloadTime;
 
     [SerializeField]
-    protected int gunClipSize;
+    protected int gunAmmoClipSize;
 
     [SerializeField]
     protected DamageGiver gunProjectilePref;
@@ -31,8 +31,10 @@ public abstract class Gun : MonoBehaviour
     protected AudioClip gunReloadSound;
 
     private int gunAmmoInClip;
-    float timeBetweenShots, timeLastShot;
-    bool reloading;
+    private float timeBetweenShots, timeLastShot;
+    private bool reloading;
+
+    Coroutine reloadCor;
 
     private void Start()
     {
@@ -48,14 +50,14 @@ public abstract class Gun : MonoBehaviour
         }
     }
 
-    public virtual void FieldCheck()
+    protected virtual void FieldCheck()
     {
         if (gunAccuracy == 0) Debug.LogWarning("Accuracy not setted");
         if (gunFireRatePerMin == 0) Debug.LogWarning("FireRatePerMin not setted");
         if (gunDamage == 0) Debug.LogWarning("Damage not setted");
         if (gunProjectileSpeed == 0) Debug.LogWarning("ProjectileSpeed not setted");
         if (gunReloadTime == 0) Debug.LogWarning("ReloadTime not setted");
-        if (gunClipSize == 0) Debug.LogWarning("ClipSize not setted");
+        if (gunAmmoClipSize == 0) Debug.LogWarning("ClipSize not setted");
         if (gunProjectilePref == null) Debug.LogWarning("ProjectilePref not setted");
         if (gunShootPoint == null) Debug.LogWarning("ShootPoint not setted");
         if (gunSoundSource == null) Debug.LogWarning("SoundSource not setted");
@@ -63,13 +65,19 @@ public abstract class Gun : MonoBehaviour
         if (gunReloadSound == null) Debug.LogWarning("ReloadSound not setted");
     }
 
-    public virtual void TryShoot()
+    protected virtual void TryShoot()
     {
         if (CanShoot()) Shoot();
     }
 
-    public virtual bool CanShoot()
+    protected virtual bool CanShoot()
     {
+        if (reloading)
+            return false;
+
+        if (!CheckAmmo())
+            return false;
+
         if (Time.time - timeLastShot > timeBetweenShots)
         {
             timeLastShot = Time.time;
@@ -78,18 +86,41 @@ public abstract class Gun : MonoBehaviour
         return false;
     }
 
-    public virtual void Shoot()
+    protected virtual void Shoot()
     {
         DamageGiver projectile = CreateProjectile();
         PlayShotSound();
+
+        gunAmmoClipSize--;
+        CheckAmmo();
     }
 
-    public virtual void Reload()
+    protected virtual void Reload()
     {
-
+        if (reloadCor != null)
+            return;
+        reloadCor = StartCoroutine(ReloadCor());
     }
 
-    public virtual void PlayShotSound()
+    protected  virtual IEnumerator ReloadCor()
+    {
+        reloading = true;
+        yield return new WaitForSeconds(gunReloadTime);
+        reloading = false;
+        gunAmmoInClip = gunAmmoClipSize;
+    }
+
+    protected virtual bool CheckAmmo()
+    {
+        if (gunAmmoInClip == 0)
+        {
+            Reload();
+            return false;
+        }
+        return true;
+    }
+
+    protected virtual void PlayShotSound()
     {
         if (gunSoundSource && gunShootSound)
         {
@@ -98,10 +129,10 @@ public abstract class Gun : MonoBehaviour
         }
     }
 
-    public virtual DamageGiver CreateProjectile()
+    protected virtual DamageGiver CreateProjectile()
     {
         //TODO Add Object pooling
-        GunProjectile projectile = Instantiate(gunProjectilePref.gameObject, null, 
+        GunProjectile projectile = Instantiate(gunProjectilePref.gameObject, null,
             true).GetComponent<GunProjectile>();   //TODO mess with parent object
 
         projectile.InitProjectile(gunDamage, gunProjectileSpeed, gunShootPoint.position, gunShootPoint.forward);
