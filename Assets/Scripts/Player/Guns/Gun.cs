@@ -7,7 +7,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField]
     protected float gunAccuracy;
     [SerializeField]
-    protected float gunFireRate;
+    protected float gunFireRatePerMin;
     [SerializeField]
     protected float gunDamage;
     [SerializeField]
@@ -34,16 +34,15 @@ public abstract class Gun : MonoBehaviour
     float timeBetweenShots, timeLastShot;
     bool reloading;
 
-
     private void Start()
     {
-        timeBetweenShots = 1f / gunFireRate;
+        timeBetweenShots = 60f / gunFireRatePerMin;
         FieldCheck();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             TryShoot();
         }
@@ -52,7 +51,7 @@ public abstract class Gun : MonoBehaviour
     public virtual void FieldCheck()
     {
         if (gunAccuracy == 0) Debug.LogWarning("Accuracy not setted");
-        if (gunFireRate == 0) Debug.LogWarning("FireRate not setted");
+        if (gunFireRatePerMin == 0) Debug.LogWarning("FireRatePerMin not setted");
         if (gunDamage == 0) Debug.LogWarning("Damage not setted");
         if (gunProjectileSpeed == 0) Debug.LogWarning("ProjectileSpeed not setted");
         if (gunReloadTime == 0) Debug.LogWarning("ReloadTime not setted");
@@ -69,7 +68,7 @@ public abstract class Gun : MonoBehaviour
         if (CanShoot()) Shoot();
     }
 
-    bool CanShoot()
+    public virtual bool CanShoot()
     {
         if (Time.time - timeLastShot > timeBetweenShots)
         {
@@ -81,8 +80,8 @@ public abstract class Gun : MonoBehaviour
 
     public virtual void Shoot()
     {
-        DamageGiver projectile = CreateProjectile();      
-        
+        DamageGiver projectile = CreateProjectile();
+        PlayShotSound();
     }
 
     public virtual void Reload()
@@ -105,7 +104,7 @@ public abstract class Gun : MonoBehaviour
         GunProjectile projectile = Instantiate(gunProjectilePref.gameObject, null, 
             true).GetComponent<GunProjectile>();   //TODO mess with parent object
 
-        projectile.InitProjectile(gunDamage, gunProjectileSpeed, gunShootPoint.position);
+        projectile.InitProjectile(gunDamage, gunProjectileSpeed, gunShootPoint.position, gunShootPoint.forward);
 
         return projectile;
     }

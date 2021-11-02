@@ -12,12 +12,11 @@ public class GunProjectile : DamageGiver        //В настоящем шуте
         transform.position += Time.deltaTime * MoveSpeed * MoveDirection;
     }
 
-    public void InitProjectile(float damageAmount, float moveSpeed, Vector3 startWorldPosition, Vector3? moveDirection = null)
+    public void InitProjectile(float damageAmount, float moveSpeed, Vector3 startWorldPosition, Vector3 moveDirection)
     {
         this.DamageAmount = damageAmount;
         this.MoveSpeed = moveSpeed;
         this.transform.position = startWorldPosition;
-        moveDirection ??= Vector3.forward;      //default direction
-        this.MoveDirection = moveDirection.Value;
+        this.MoveDirection = moveDirection;
     }
 }
