@@ -33,20 +33,22 @@ public abstract class Gun : MonoBehaviour
     protected AudioClip gunEmptySound;
 
     private int gunAmmoInClip;
-    private float timeBetweenShots, timeLastShot;
-    private bool reloading;
+    private float timeBetweenShots = 0f;
+    private float nextFire = 0f;
+    private bool reloading = false;
 
     Coroutine reloadCor;
 
     private void Start()
     {
         timeBetweenShots = 60f / gunFireRatePerMin;
+        gunAmmoInClip = gunAmmoClipSize;
         FieldCheck();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetButton("Fire1"))
         {
             TryShoot();
         }
@@ -85,9 +87,9 @@ public abstract class Gun : MonoBehaviour
             return false;
         }
 
-        if (Time.time - timeLastShot > timeBetweenShots)
+        if (Time.time > nextFire)
         {
-            timeLastShot = Time.time;
+            nextFire = Time.time + timeBetweenShots;
             return true;
         }
         return false;
