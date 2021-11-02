@@ -5,8 +5,7 @@ using UnityEngine.Events;
 
 public class DamageGiver : MonoBehaviour
 {
-    [SerializeField]
-    int damageAmount;
+    public float DamageAmount { get; set; }
     UnityEvent onHit;
 
     private void OnCollisionEnter(Collision collision)
@@ -28,7 +27,7 @@ public class DamageGiver : MonoBehaviour
 
     void Hit(IDamageable damageReceiver)
     {
-        ((IDamageable)damageReceiver).TakeDamage(damageAmount);
+        damageReceiver.TakeDamage(DamageAmount);
         if(onHit != null)
         {
             onHit.Invoke();
