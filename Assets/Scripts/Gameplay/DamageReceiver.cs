@@ -5,14 +5,14 @@ using UnityEngine.Events;
 
 public interface IDamageable
 {
-    void TakeDamage(int damageAmount);
+    void TakeDamage(float damageAmount);
 }
 
 public class DamageReceiver : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    int maxHealthPoints;
-    int currentHealthPoints;
+    float maxHealthPoints;
+    float currentHealthPoints;
 
     public UnityEvent onDeath;
 
@@ -21,7 +21,7 @@ public class DamageReceiver : MonoBehaviour, IDamageable
         currentHealthPoints = maxHealthPoints;
     }
 
-    void IDamageable.TakeDamage(int damageAmount)
+    void IDamageable.TakeDamage(float damageAmount)
     {
         currentHealthPoints -= damageAmount;
 
