@@ -21,8 +21,7 @@ public class DamageGiver : MonoBehaviour
             {
                 Hit(damageReceiver);
             }
-        }
-        
+        }        
     }
 
     void Hit(IDamageable damageReceiver)
