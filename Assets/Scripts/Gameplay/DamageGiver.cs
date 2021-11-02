@@ -1,19 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DamageGiver : MonoBehaviour
 {
     [SerializeField]
-    int damageAmount = 1;
+    int damageAmount;
+    UnityEvent onHit;
 
     private void OnCollisionEnter(Collision collision)
     {
-        var otherDamageReceiver = collision.gameObject.GetComponent<DamageReceiver>();
-        if(otherDamageReceiver != null)
+        HitCheck(collision.gameObject);
+    }
+
+    void HitCheck(GameObject hitSubject)
+    {
+        DamageReceiver damageReceiver = hitSubject.GetComponent<DamageReceiver>();
         {
-            otherDamageReceiver.TakeDamage(damageAmount);
+            if (damageReceiver != null)
+            {
+                Hit(damageReceiver);
+            }
         }
-        Destroy(gameObject);
+        
+    }
+
+    void Hit(DamageReceiver damageReceiver)
+    {
+        damageReceiver.TakeDamage(damageAmount);
+        if(onHit != null)
+        {
+            onHit.Invoke();
+        }
     }
 }
