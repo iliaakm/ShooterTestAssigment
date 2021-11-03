@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     float shootRange;
     [SerializeField]
-    float shootFirePerMin;
+    float shootFireRatePerMin;
     [SerializeField]
     float shootDamage;
     [SerializeField, Range(0f, 1f)]
@@ -28,11 +28,14 @@ public class Enemy : MonoBehaviour
 
     Vector3 startPos;
     float enemyRadius;
+    float timeBetweenShots;
 
     private void Start()
     {
         enemyRadius = GetComponent<CapsuleCollider>().radius;
         startPos = transform.position;
+        timeBetweenShots = 60f / shootFireRatePerMin;
+        StartCoroutine(ShootLoopCor());
     }
 
     private void FixedUpdate()
@@ -81,8 +84,31 @@ public class Enemy : MonoBehaviour
             RaycastHit raycastHit;
             if(Physics.Raycast(ray, out raycastHit, shootRange))
             {
-
+                if(raycastHit.collider.transform == playerTransform)
+                {
+                    HitPlayer(ray.direction);
+                }
             }
         }
+    }
+
+    IEnumerator ShootLoopCor()
+    {
+        while (true)
+        {
+            ShootToPlayer();
+
+            yield return new WaitForSeconds(timeBetweenShots);
+        }
+    }
+
+    void HitPlayer(Vector3 direction)
+    {
+        playerTransform.GetComponent<ImpactReceiver>().AddImpact(direction, shootDamage);
+    }
+
+    private void OnDestroy()
+    {
+        StopCoroutine(ShootLoopCor());
     }
 }
