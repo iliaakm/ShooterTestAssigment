@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d1f8b38aef7214e96c627ccb6b00cb, type: 3}
   m_Name: Cross Hair Colors
   m_EditorClassIdentifier: 
-  colorNormal: {r: 1, g: 1, b: 1, a: 1}
-  colorEnemy: {r: 1, g: 0, b: 0, a: 1}
+  colorNormal: {r: 1, g: 0, b: 0, a: 1}
+  colorEnemy: {r: 1, g: 0.93730223, b: 0, a: 1}
   crosshairDistance: 100
