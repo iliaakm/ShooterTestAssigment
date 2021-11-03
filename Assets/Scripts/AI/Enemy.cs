@@ -20,20 +20,35 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     float shootAccuracy;
 
-    RaycastHit RayCastDir(Vector3 direction, float maxLength)
+    float enemyRadius;
+
+    private void Start()
     {
-        RaycastHit hit;
-        Physics.Raycast(transform.position, direction, out hit, maxLength);
-        return hit;
+        enemyRadius = GetComponent<CapsuleCollider>().radius;
     }
 
     private void FixedUpdate()
     {
-        Vector3 newPos = Mathf.Repeat()
+        Move();
     }
 
     private void Move()
     {
-        if(RayCastDir(moveDirection))
+        RaycastHit hit;
+        Vector3 posDelta = Vector3.zero;
+        Debug.DrawRay(transform.position, transform.TransformDirection(moveDirection), Color.yellow);
+        if (Physics.Raycast(transform.position, transform.TransformDirection(moveDirection), out hit, enemyRadius + movementSpeed * Time.deltaTime))
+        {
+            moveDirection = -moveDirection;
+            Debug.DrawLine(transform.position, hit.point, Color.blue);
+            print(hit.collider.name);
+        }
+        else
+        {
+            posDelta = movementSpeed * Time.deltaTime * moveDirection;
+             
+        }
+       
+        transform.position += posDelta;
     }
 }
