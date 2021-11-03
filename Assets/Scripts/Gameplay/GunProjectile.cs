@@ -7,6 +7,16 @@ public class GunProjectile : DamageGiver        //В настоящем шуте
     public float MoveSpeed { get; set; }
     public Vector3 MoveDirection { get; set; }
 
+    ParticleSystem hitParticle;
+
+    private void Start()
+    {
+        hitParticle = GetComponent<ParticleSystem>();
+        if (OnHit == null)
+            OnHit = new UnityEngine.Events.UnityEvent();
+        OnHit.AddListener(ShellStop);
+    }
+
     private void FixedUpdate()
     {
         transform.position += Time.deltaTime * MoveSpeed * MoveDirection;
@@ -18,5 +28,11 @@ public class GunProjectile : DamageGiver        //В настоящем шуте
         this.MoveSpeed = moveSpeed;
         this.transform.position = startWorldPosition;
         this.MoveDirection = moveDirection;
+    }
+
+    void ShellStop()
+    {
+        this.MoveSpeed = 0;
+        hitParticle.Play();
     }
 }
