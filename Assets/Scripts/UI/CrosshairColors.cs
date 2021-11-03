@@ -6,7 +6,16 @@ using UnityEngine;
 public class CrosshairColors : ScriptableObject
 {
     public Color colorNormal;
-    public Color enemyEnemy;
+    public Color colorEnemy;
 
+    public float crosshairDistance;
 
+    public Color GetCrosshairColor(GameObject target)
+    {
+        if (target.GetComponent<Enemy>())
+        {
+            return colorEnemy;
+        }
+        return colorNormal;
+    }
 }
