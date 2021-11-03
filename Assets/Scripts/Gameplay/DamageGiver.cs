@@ -11,6 +11,10 @@ public class DamageGiver : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         HitCheck(collision.gameObject);
+        if (OnHit != null)
+        {
+            OnHit.Invoke();
+        }
     }
 
     void HitCheck(GameObject hitSubject)
@@ -26,10 +30,6 @@ public class DamageGiver : MonoBehaviour
 
     void Hit(IDamageable damageReceiver)
     {
-        damageReceiver.TakeDamage(DamageAmount);
-        if(OnHit != null)
-        {
-            OnHit.Invoke();
-        }
+        damageReceiver.TakeDamage(DamageAmount);    
     }
 }
