@@ -11,8 +11,7 @@ public class CrossHair : MonoBehaviour
     CrossHairColors crosshairColors;
 
     Image crosshairImage;
-
-    Ray ray;    
+    Ray ray;
 
     private void Start()
     {
@@ -21,16 +20,27 @@ public class CrossHair : MonoBehaviour
 
     void Update()
     {
+        ColorCheck();
+    }
+
+    void ColorCheck()
+    {
         ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         //Debug.DrawRay(ray.origin, ray.direction, Color.white);
 
         RaycastHit raycastHit;
+
         if (Physics.Raycast(ray, out raycastHit, crosshairColors.crosshairDistance))
         {
-             UpdateCrosshairColor(crosshairColors.
-                 GetCrosshairColor(raycastHit.collider.gameObject));
+            UpdateCrosshairColor(crosshairColors.
+                     GetCrosshairColor(raycastHit.collider.gameObject));
+        }
+        else
+        {
+            UpdateCrosshairColor(crosshairColors.colorNormal);
         }
     }
+
     void UpdateCrosshairColor(Color color)
     {
         crosshairImage.color = color;
