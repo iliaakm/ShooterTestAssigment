@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunProjectile : DamageGiver        //В настоящем шутере классы пули и нанесения урона наверняка были бы связаны по-другому, здесь для упрощения сделано про принцину KISS
+public class GunProjectile : DamageGiver        //В настоящем шутере классы пули и нанесения урона были бы связаны по-другому, здесь для упрощения сделано про принцину KISS
 {
     public float MoveSpeed { get; set; }
     public Vector3 MoveDirection { get; set; }
 
-    private void Update()
+    private void FixedUpdate()
     {
         transform.position += Time.deltaTime * MoveSpeed * MoveDirection;
     }
