@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
 {
     [Inject(Id = "PlayerTransform")]
     readonly Transform playerTransform;
+    [Inject]
+    ImpactReceiver playerImpactReceiver;
 
     [Header("Movement")]
     [SerializeField]
@@ -22,7 +24,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     float shootFireRatePerMin;
     [SerializeField]
-    float shootDamage;
+    float shootImpact;
     [SerializeField, Range(0f, 1f)]
     float shootAccuracy;
 
@@ -78,9 +80,10 @@ public class Enemy : MonoBehaviour
     private void ShootToPlayer()
     {
         float hitChance = Random.Range(0f, 1f);
-        if (hitChance > shootAccuracy)
+        if (hitChance < shootAccuracy)
         {
             Ray ray = new Ray(this.transform.position, playerTransform.position - this.transform.position);
+            Debug.DrawRay(ray.origin, ray.direction, Color.red);
             RaycastHit raycastHit;
             if(Physics.Raycast(ray, out raycastHit, shootRange))
             {
@@ -104,7 +107,8 @@ public class Enemy : MonoBehaviour
 
     void HitPlayer(Vector3 direction)
     {
-        playerTransform.GetComponent<ImpactReceiver>().AddImpact(direction, shootDamage);
+        playerImpactReceiver.AddImpact(direction, shootImpact);
+        print("Hit player");
     }
 
     private void OnDestroy()
