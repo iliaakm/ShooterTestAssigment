@@ -30,8 +30,7 @@ public class DamageReceiver : MonoBehaviour, IDamageable
             if (onDeath != null)
             {
                 onDeath.Invoke();
-            }
-            Destroy(gameObject);
+            }            
         }
     }
 }
