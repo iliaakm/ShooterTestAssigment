@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Cross Hair Colors
   m_EditorClassIdentifier: 
   colorNormal: {r: 1, g: 1, b: 1, a: 1}
-  enemyEnemy: {r: 1, g: 0, b: 0, a: 1}
+  colorEnemy: {r: 1, g: 0, b: 0, a: 1}
+  crosshairDistance: 100

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scriptable Objects/CrosshairColors")]
-public class CrosshairColors : ScriptableObject
+public class CrossHairColors : ScriptableObject
 {
     public Color colorNormal;
     public Color colorEnemy;

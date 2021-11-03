@@ -3,23 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Crosshair : MonoBehaviour
+public class CrossHair : MonoBehaviour
 {
     [SerializeField]
     Camera playerCamera;
     [SerializeField]
-    Image crossHair;
-    [SerializeField]
-    CrosshairColors crosshairColors;
+    CrossHairColors crosshairColors;
 
-    Ray ray;
-    RaycastHit raycastHit;
+    Image crosshairImage;
+
+    Ray ray;    
+
+    private void Start()
+    {
+        crosshairImage = GetComponent<Image>();
+    }
 
     void Update()
     {
         ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+        //Debug.DrawRay(ray.origin, ray.direction, Color.white);
 
-        if(Physics.Raycast(ray, out raycastHit, crosshairColors.crosshairDistance))
+        RaycastHit raycastHit;
+        if (Physics.Raycast(ray, out raycastHit, crosshairColors.crosshairDistance))
         {
              UpdateCrosshairColor(crosshairColors.
                  GetCrosshairColor(raycastHit.collider.gameObject));
@@ -27,6 +33,6 @@ public class Crosshair : MonoBehaviour
     }
     void UpdateCrosshairColor(Color color)
     {
-        crossHair.color = color;
+        crosshairImage.color = color;
     }
 }
