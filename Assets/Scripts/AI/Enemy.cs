@@ -37,7 +37,24 @@ public class Enemy : MonoBehaviour
     Vector3 startPos;
     float enemyRadius;
     float timeBetweenShots;
-    DirectPlayerVisibility directPlayerVisibility;
+
+    DirectPlayerVisibility _directPlayerVisibility;
+    DirectPlayerVisibility DirectPlayerVisibility
+    {
+        get { return _directPlayerVisibility; }
+        set
+        {
+            _directPlayerVisibility = value;
+            if(_directPlayerVisibility == DirectPlayerVisibility.Invisible)
+            {
+                gameObject.layer = 8;
+            }
+            if (_directPlayerVisibility == DirectPlayerVisibility.Visible)
+            {
+                gameObject.layer = 0;
+            }
+        }
+    }
 
     private void Start()
     {
@@ -90,7 +107,7 @@ public class Enemy : MonoBehaviour
         float hitChance = Random.Range(0f, 1f);
         if (hitChance < shootAccuracy)
         {
-            if (directPlayerVisibility == DirectPlayerVisibility.Visible)
+            if (DirectPlayerVisibility == DirectPlayerVisibility.Visible)
             {
                 Vector3 pushDirection = playerTransform.position - transform.position;
                 HitPlayer(pushDirection);
@@ -121,7 +138,7 @@ public class Enemy : MonoBehaviour
 
     void CheckVisible()
     {
-        directPlayerVisibility = DirectPlayerVisibility.Invisible;
+        DirectPlayerVisibility = DirectPlayerVisibility.Invisible;
 
         Ray ray = new Ray(this.transform.position, playerTransform.position - this.transform.position);
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
@@ -130,7 +147,7 @@ public class Enemy : MonoBehaviour
         {
             if (raycastHit.collider.transform == playerTransform)
             {
-                directPlayerVisibility = DirectPlayerVisibility.Visible;
+                DirectPlayerVisibility = DirectPlayerVisibility.Visible;
             }
         }
     }
