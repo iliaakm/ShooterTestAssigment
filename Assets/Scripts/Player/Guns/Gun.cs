@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,9 +35,9 @@ public abstract class Gun : MonoBehaviour
     private int gunAmmoInClip;
     private float timeBetweenShots = 0f;
     private float nextFire = 0f;
-    private bool reloading = false;
+    private bool reloading = false;         //TODO заменить на state mashine
 
-    Coroutine reloadCor;
+    Coroutine reloadCor;    
 
     private void Start()
     {
