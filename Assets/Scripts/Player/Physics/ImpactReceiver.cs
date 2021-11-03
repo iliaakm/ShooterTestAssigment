@@ -9,6 +9,8 @@ public class ImpactReceiver : MonoBehaviour
     private float characterMass;
     [SerializeField]
     private float impactThreshorld = 0.2f;
+    [SerializeField]
+    private float impactReducer;
     private CharacterController character;
     private Vector3 impact = Vector3.zero;
 
@@ -24,7 +26,7 @@ public class ImpactReceiver : MonoBehaviour
         {
             character.Move(impact * Time.deltaTime);
         }
-        impact = Vector3.Lerp(impact, Vector3.zero, Time.deltaTime);
+        impact = Vector3.Lerp(impact, Vector3.zero, Time.deltaTime * impactReducer);
     }
 
     public void AddImpact(Vector3 dir, float force)
