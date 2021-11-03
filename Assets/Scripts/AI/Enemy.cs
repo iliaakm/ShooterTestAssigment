@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+enum DirectPlayerVisibility
+{
+    Visible,
+    Invisible
+}
+
 public class Enemy : MonoBehaviour
 {
     [Inject(Id = "PlayerTransform")]
@@ -31,6 +37,7 @@ public class Enemy : MonoBehaviour
     Vector3 startPos;
     float enemyRadius;
     float timeBetweenShots;
+    DirectPlayerVisibility directPlayerVisibility;
 
     private void Start()
     {
@@ -43,6 +50,7 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
+        CheckVisible();
     }
 
     private void Move()
@@ -82,15 +90,10 @@ public class Enemy : MonoBehaviour
         float hitChance = Random.Range(0f, 1f);
         if (hitChance < shootAccuracy)
         {
-            Ray ray = new Ray(this.transform.position, playerTransform.position - this.transform.position);
-            Debug.DrawRay(ray.origin, ray.direction, Color.red);
-            RaycastHit raycastHit;
-            if(Physics.Raycast(ray, out raycastHit, shootRange))
+            if (directPlayerVisibility == DirectPlayerVisibility.Visible)
             {
-                if(raycastHit.collider.transform == playerTransform)
-                {
-                    HitPlayer(ray.direction);
-                }
+                Vector3 pushDirection = playerTransform.position - transform.position;
+                HitPlayer(pushDirection);
             }
         }
     }
@@ -114,5 +117,21 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         StopCoroutine(ShootLoopCor());
+    }
+
+    void CheckVisible()
+    {
+        directPlayerVisibility = DirectPlayerVisibility.Invisible;
+
+        Ray ray = new Ray(this.transform.position, playerTransform.position - this.transform.position);
+        Debug.DrawRay(ray.origin, ray.direction, Color.red);
+        RaycastHit raycastHit;
+        if (Physics.Raycast(ray, out raycastHit, shootRange))
+        {
+            if (raycastHit.collider.transform == playerTransform)
+            {
+                directPlayerVisibility = DirectPlayerVisibility.Visible;
+            }
+        }
     }
 }
