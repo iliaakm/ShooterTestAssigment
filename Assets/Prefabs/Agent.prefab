@@ -113,10 +113,10 @@ MonoBehaviour:
   movementSpeed: 1
   moveDirection: {x: 1, y: 0}
   moveDistance: 5
-  shootRange: 15
+  shootRange: 8
   shootFireRatePerMin: 10
   shootImpact: 3000
-  shootAccuracy: 0.75
+  shootAccuracy: 0.5
 --- !u!54 &163301256791212758
 Rigidbody:
   m_ObjectHideFlags: 0
