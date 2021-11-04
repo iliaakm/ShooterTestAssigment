@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public abstract class Gun : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public abstract class Gun : MonoBehaviour
         Loaded,
         Reloading
     }
+
+    [Inject]
+    ObjectPool pool;
 
     [SerializeField]
     protected float gunSpread;
@@ -158,11 +162,12 @@ public abstract class Gun : MonoBehaviour
     protected virtual DamageGiver CreateProjectile()
     {
         //TODO Add Object pooling
-        GunProjectile projectile = Instantiate(gunProjectilePref.gameObject, null,
-            true).GetComponent<GunProjectile>();   //TODO mess with parent object
+        //GunProjectile projectile = Instantiate(gunProjectilePref.gameObject, null,
+        //    true).GetComponent<GunProjectile>();   //TODO mess with parent object
+        GunProjectile projectile = pool.GetObject()
+            .GetComponent<GunProjectile>();
 
         Vector3 moveDirection = gunShootPoint.forward + GetSpread();
-
         projectile.InitProjectile(gunDamage, gunProjectileSpeed, gunShootPoint.position, moveDirection);
 
         return projectile;
