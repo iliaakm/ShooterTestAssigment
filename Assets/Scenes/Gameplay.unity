@@ -1173,6 +1173,7 @@ GameObject:
   - component: {fileID: 1637726526}
   - component: {fileID: 1637726528}
   - component: {fileID: 1637726525}
+  - component: {fileID: 1637726529}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -1352,7 +1353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7037ff3954d830d43a1a9432e22fbd04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunAccuracy: 666
+  gunSpread: 0.1
   gunFireRatePerMin: 200
   gunDamage: 1
   gunProjectileSpeed: 100
@@ -1363,7 +1364,19 @@ MonoBehaviour:
   gunSoundSource: {fileID: 1637726525}
   gunShootSound: {fileID: 8300000, guid: ddcda2afcfc97b644a670b47ed937197, type: 3}
   gunReloadSound: {fileID: 8300000, guid: 0e2fc5ebfe1c3e84c813eb28af550a27, type: 3}
-  gunEmptySound: {fileID: 8300000, guid: 9cdd0fc44bbb30245a10b9a8c2c93750, type: 3}
+--- !u!114 &1637726529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637726523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4fcf81a0ea78e4993d2db4e96bfe65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7805768862353676510, guid: d91cc5bf1b5b91046926f97f4140f1c9, type: 3}
 --- !u!1 &1696613184
 GameObject:
   m_ObjectHideFlags: 0
