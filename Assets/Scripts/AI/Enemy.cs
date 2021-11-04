@@ -47,6 +47,8 @@ public class Enemy : MonoBehaviour
     float shootAccuracy;
     [SerializeField]
     float shotTracerTime;
+    [SerializeField]
+    AnimationCurve dissolveCurve;
 
     Vector3 startPos;
     float enemyRadius;
@@ -223,5 +225,22 @@ public class Enemy : MonoBehaviour
     {
         AliveStatus = AliveStatus.Dead;
         DirectPlayerVisibilityState = DirectPlayerVisibility.Visible;
+        StartCoroutine(DeathCor());
+    }
+
+    IEnumerator DeathCor()
+    {
+        Material material = GetComponent<Renderer>().material;
+        float alpha = 0;
+        float time = 0;
+
+        while(time < 1)
+        {
+            alpha = dissolveCurve.Evaluate(time);
+            material.SetFloat("_Alpha", alpha);
+            time += Time.deltaTime;
+
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
     }
 }
