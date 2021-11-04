@@ -39,10 +39,13 @@ public class Enemy : MonoBehaviour
     float shootImpact;
     [SerializeField, Range(0f, 1f)]
     float shootAccuracy;
+    [SerializeField]
+    float shotTracerTime;
 
     Vector3 startPos;
     float enemyRadius;
     float timeBetweenShots;
+    LineRenderer shotTracer;
 
     DirectPlayerVisibility _directPlayerVisibilityState;
     DirectPlayerVisibility DirectPlayerVisibilityState
@@ -70,6 +73,7 @@ public class Enemy : MonoBehaviour
         ShootRangeState = ShootRange.TooFar;
 
         enemyRadius = GetComponent<CapsuleCollider>().radius;
+        shotTracer = GetComponent<LineRenderer>();
         startPos = transform.position;
         timeBetweenShots = 60f / shootFireRatePerMin;
 
@@ -124,6 +128,7 @@ public class Enemy : MonoBehaviour
                 {
                     Vector3 pushDirection = playerTransform.position - transform.position;
                     HitPlayer(pushDirection);
+                    StartCoroutine(DrawShotTrailCor());
                 }
         }
     }
@@ -168,6 +173,17 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator DrawShotTrailCor()
+    {
+        shotTracer.SetPosition(0, transform.position);
+        shotTracer.SetPosition(1, playerTransform.position);
+        shotTracer.enabled = true;
+
+        yield return new WaitForSeconds(shotTracerTime);
+
+        shotTracer.enabled = false;
     }
 
     private void OnDrawGizmosSelected()
