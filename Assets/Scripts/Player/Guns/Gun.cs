@@ -56,7 +56,7 @@ public abstract class Gun : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1"))       //TODO take magic string from confiig 
         {
             TryShoot();
         }
@@ -86,7 +86,6 @@ public abstract class Gun : MonoBehaviour
     {
         if (gunState ==  GunState.Reloading)
         {
-            //PlayEmptySound();
             return false;
         }
 
@@ -161,9 +160,6 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual DamageGiver CreateProjectile()
     {
-        //TODO Add Object pooling
-        //GunProjectile projectile = Instantiate(gunProjectilePref.gameObject, null,
-        //    true).GetComponent<GunProjectile>();   //TODO mess with parent object
         GunProjectile projectile = pool.GetObject()
             .GetComponent<GunProjectile>();
 
