@@ -10,8 +10,11 @@ public class GunProjectile : DamageGiver, IObjectPoolNotifier
     ParticleSystem hitParticle;
     float poolReturnDelay;
 
+    Rigidbody rigidbody;
+
     private void Awake()
     {
+        rigidbody = GetComponent<Rigidbody>();
         hitParticle = GetComponent<ParticleSystem>();
         if (OnHit == null)
             OnHit = new UnityEngine.Events.UnityEvent();
@@ -34,6 +37,8 @@ public class GunProjectile : DamageGiver, IObjectPoolNotifier
     void ShellStop()
     {
         this.MoveSpeed = 0;
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
         hitParticle.Play();
         StartCoroutine(PoolReturnDelayCor());
     }
