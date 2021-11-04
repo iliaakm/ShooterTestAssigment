@@ -11,7 +11,7 @@ public abstract class Gun : MonoBehaviour
     }
 
     [SerializeField]
-    protected float gunAccuracy;
+    protected float gunSpread;
     [SerializeField]
     protected float gunFireRatePerMin;
     [SerializeField]
@@ -35,8 +35,6 @@ public abstract class Gun : MonoBehaviour
     protected AudioClip gunShootSound;
     [SerializeField]
     protected AudioClip gunReloadSound;
-    [SerializeField]
-    protected AudioClip gunEmptySound;
 
     GunState gunState { get; set; }
     Coroutine reloadCor;    
@@ -62,7 +60,7 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual void FieldCheck()
     {
-        if (gunAccuracy == 0) Debug.LogWarning("Accuracy not setted");
+        if (gunSpread == 0) Debug.LogWarning("Accuracy not setted");
         if (gunFireRatePerMin == 0) Debug.LogWarning("FireRatePerMin not setted");
         if (gunDamage == 0) Debug.LogWarning("Damage not setted");
         if (gunProjectileSpeed == 0) Debug.LogWarning("ProjectileSpeed not setted");
@@ -103,7 +101,8 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual void Shoot()
     {
-        DamageGiver projectile = CreateProjectile();
+        CreateProjectile();
+
         PlayShotSound();
 
         gunAmmoInClip--;
@@ -142,11 +141,6 @@ public abstract class Gun : MonoBehaviour
         PlaySound(gunShootSound);
     }
 
-    protected virtual void PlayEmptySound()
-    {
-        PlaySound(gunEmptySound);
-    }
-
     protected virtual void PlayReloadSound()
     {
         PlaySound(gunReloadSound);
@@ -167,8 +161,19 @@ public abstract class Gun : MonoBehaviour
         GunProjectile projectile = Instantiate(gunProjectilePref.gameObject, null,
             true).GetComponent<GunProjectile>();   //TODO mess with parent object
 
-        projectile.InitProjectile(gunDamage, gunProjectileSpeed, gunShootPoint.position, gunShootPoint.forward);
+        Vector3 moveDirection = gunShootPoint.forward + GetSpread();
+
+        projectile.InitProjectile(gunDamage, gunProjectileSpeed, gunShootPoint.position, moveDirection);
 
         return projectile;
+    }
+
+    protected virtual Vector3 GetSpread()
+    {
+        Vector3 spread = Vector3.zero;
+        spread.x = Random.Range(-gunSpread, gunSpread);
+        spread.y = Random.Range(-gunSpread, gunSpread);
+
+        return spread;
     }
 }
