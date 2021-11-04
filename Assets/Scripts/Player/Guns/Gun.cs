@@ -47,14 +47,14 @@ public abstract class Gun : MonoBehaviour
     private float timeBetweenShots = 0f;
     private float nextFire = 0f;
 
-    private void Start()
+    protected virtual void Start()
     {
         timeBetweenShots = 60f / gunFireRatePerMin;
         gunAmmoInClip = gunAmmoClipSize;
         FieldCheck();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (Input.GetButton("Fire1"))       //TODO take magic string from confiig 
         {
