@@ -15,6 +15,12 @@ enum ShootRange
     TooFar
 }
 
+enum AliveStatus
+{
+    Alive,
+    Dead
+}
+
 public class Enemy : MonoBehaviour
 {
     [Inject(Id = GameConfig.ZenjectConfig.playerTransform)]
@@ -67,14 +73,22 @@ public class Enemy : MonoBehaviour
     }
 
     ShootRange ShootRangeState { get; set; }
+    AliveStatus AliveStatus { get; set; }
 
     private void Start()
     {
         DirectPlayerVisibilityState = DirectPlayerVisibility.Invisible;
         ShootRangeState = ShootRange.TooFar;
+        AliveStatus = AliveStatus.Alive;
 
         enemyRadius = GetComponent<CapsuleCollider>().radius;
         shotTracer = GetComponent<LineRenderer>();
+
+        damageReceiver = GetComponent<DamageReceiver>();
+        if (damageReceiver.onDeath == null)
+            damageReceiver.onDeath = new UnityEngine.Events.UnityEvent();
+        damageReceiver.onDeath.AddListener(Death);
+
         startPos = transform.position;
         timeBetweenShots = 60f / shootFireRatePerMin;
 
@@ -83,6 +97,9 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (AliveStatus == AliveStatus.Dead)
+            return;
+
         Move();
         CheckVisible();
     }
@@ -138,6 +155,9 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
+            if (AliveStatus == AliveStatus.Dead)
+                yield break;
+
             ShootToPlayer();
 
             yield return new WaitForSeconds(timeBetweenShots);
@@ -201,6 +221,7 @@ public class Enemy : MonoBehaviour
 
     void Death()
     {
-
+        AliveStatus = AliveStatus.Dead;
+        DirectPlayerVisibilityState = DirectPlayerVisibility.Visible;
     }
 }
