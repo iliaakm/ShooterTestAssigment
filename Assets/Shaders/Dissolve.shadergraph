@@ -301,9 +301,6 @@
                 "m_Id": "ea48c55be6ea4356bc59355b9ee0dc70"
             },
             {
-                "m_Id": "ed0450b687ec49c7be205567841ddddd"
-            },
-            {
                 "m_Id": "7e20a7982f384f1cbf0a1677d9f53177"
             },
             {
@@ -317,6 +314,9 @@
             },
             {
                 "m_Id": "85f0fc7ba3c1471cb01e45ed7be45305"
+            },
+            {
+                "m_Id": "ed0450b687ec49c7be205567841ddddd"
             },
             {
                 "m_Id": "e9d391aac8cd43eb81b2a66505f1ae07"
@@ -612,8 +612,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -934.0001220703125,
-            "y": 224.0,
+            "x": -925.0,
+            "y": 172.0,
             "width": 208.0,
             "height": 302.0
         }
@@ -866,7 +866,7 @@
     "m_ActiveSubTarget": {
         "m_Id": "83eaa15c518f45b68c1bf4a918515b47"
     },
-    "m_SurfaceType": 1,
+    "m_SurfaceType": 0,
     "m_AlphaMode": 0,
     "m_TwoSided": true,
     "m_AlphaClip": true,
@@ -1436,9 +1436,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -751.0000610351563,
-            "y": 560.0000610351563,
-            "width": 106.00000762939453,
+            "x": -533.0,
+            "y": 543.0,
+            "width": 106.0,
             "height": 34.0
         }
     },
@@ -1621,7 +1621,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": 0.0,
-    "m_FloatType": 0,
+    "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
         "y": 1.0
@@ -1920,10 +1920,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 0.0,
-            "y": 0.0,
-            "width": 0.0,
-            "height": 0.0
+            "x": 9.000065803527832,
+            "y": 469.00006103515627,
+            "width": 200.00001525878907,
+            "height": 41.000003814697269
         }
     },
     "m_Slots": [
