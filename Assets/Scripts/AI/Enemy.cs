@@ -155,7 +155,7 @@ public class Enemy : MonoBehaviour
         ShootRangeState = ShootRange.TooFar;
 
         Ray ray = new Ray(this.transform.position, playerTransform.position - this.transform.position);
-        Debug.DrawRay(ray.origin, ray.direction, Color.red);
+        //Debug.DrawRay(ray.origin, ray.direction, Color.red);
         RaycastHit raycastHit;
         if (Physics.Raycast(ray, out raycastHit))
         {
