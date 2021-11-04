@@ -24,6 +24,6 @@ public static class GameConfig
 
     public static class Animation
     {
-        public const string cannonAnimatorReloading = "Reloading";
+        public const string cannonAnimatorReloading = "Reload";
     }
 }
