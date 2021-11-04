@@ -26,4 +26,10 @@ public static class GameConfig
     {
         public const string cannonAnimatorReloading = "Reload";
     }
+
+    public static class  Layers
+    {
+        public const int layerDefault = 0;
+        public const int layerOutline = 8;
+    }
 }
