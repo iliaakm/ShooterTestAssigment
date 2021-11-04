@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunProjectile : DamageGiver        //В настоящем шутере классы пули и нанесения урона были бы связаны по-другому, здесь для упрощения сделано про принцину KISS
+public class GunProjectile : DamageGiver, IObjectPoolNotifier
 {
     public float MoveSpeed { get; set; }
     public Vector3 MoveDirection { get; set; }
 
     ParticleSystem hitParticle;
+    float poolReturnDelay;
 
-    private void Start()
+    private void Awake()
     {
         hitParticle = GetComponent<ParticleSystem>();
         if (OnHit == null)
@@ -34,5 +35,23 @@ public class GunProjectile : DamageGiver        //В настоящем шуте
     {
         this.MoveSpeed = 0;
         hitParticle.Play();
+        StartCoroutine(PoolReturnDelayCor());
+    }
+
+    void IObjectPoolNotifier.OnEnqueuedToPool()
+    {
+        hitParticle.Stop();
+    }
+
+    void IObjectPoolNotifier.OnCreatedOrDequeuedFromPool(bool created)
+    {
+        poolReturnDelay = hitParticle.main.duration;
+    }
+
+    IEnumerator PoolReturnDelayCor()
+    {
+        
+        yield return new WaitForSeconds(poolReturnDelay);
+        gameObject.ReturnToPool();
     }
 }
