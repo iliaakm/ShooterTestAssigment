@@ -115,7 +115,7 @@ MonoBehaviour:
   moveDirection: {x: 1, y: 0}
   moveDistance: 5
   shootRange: 10
-  shootFireRatePerMin: 20
+  shootFireRatePerMin: 45
   shootImpact: 3000
   shootAccuracy: 0.75
   shotTracerTime: 0.4
