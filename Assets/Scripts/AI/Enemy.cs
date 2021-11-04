@@ -9,6 +9,12 @@ enum DirectPlayerVisibility
     Invisible
 }
 
+enum ShootRange
+{
+    InRange,
+    TooFar
+}
+
 public class Enemy : MonoBehaviour
 {
     [Inject(Id = "PlayerTransform")]
@@ -38,29 +44,35 @@ public class Enemy : MonoBehaviour
     float enemyRadius;
     float timeBetweenShots;
 
-    DirectPlayerVisibility _directPlayerVisibility;
-    DirectPlayerVisibility DirectPlayerVisibility
+    DirectPlayerVisibility _directPlayerVisibilityState;
+    DirectPlayerVisibility DirectPlayerVisibilityState
     {
-        get { return _directPlayerVisibility; }
+        get { return _directPlayerVisibilityState; }
         set
         {
-            _directPlayerVisibility = value;
-            if (_directPlayerVisibility == DirectPlayerVisibility.Invisible)
+            _directPlayerVisibilityState = value;
+            if (_directPlayerVisibilityState == DirectPlayerVisibility.Invisible)
             {
                 gameObject.layer = 8;
             }
-            if (_directPlayerVisibility == DirectPlayerVisibility.Visible)
+            if (_directPlayerVisibilityState == DirectPlayerVisibility.Visible)
             {
                 gameObject.layer = 0;
             }
         }
     }
 
+    ShootRange ShootRangeState { get; set; }
+
     private void Start()
     {
+        DirectPlayerVisibilityState = DirectPlayerVisibility.Invisible;
+        ShootRangeState = ShootRange.TooFar;
+
         enemyRadius = GetComponent<CapsuleCollider>().radius;
         startPos = transform.position;
         timeBetweenShots = 60f / shootFireRatePerMin;
+
         StartCoroutine(ShootLoopCor());
     }
 
@@ -107,11 +119,12 @@ public class Enemy : MonoBehaviour
         float hitChance = Random.Range(0f, 1f);
         if (hitChance < shootAccuracy)
         {
-            if (DirectPlayerVisibility == DirectPlayerVisibility.Visible)
-            {
-                Vector3 pushDirection = playerTransform.position - transform.position;
-                HitPlayer(pushDirection);
-            }
+            if (DirectPlayerVisibilityState == DirectPlayerVisibility.Visible)
+                if (ShootRangeState == ShootRange.InRange)
+                {
+                    Vector3 pushDirection = playerTransform.position - transform.position;
+                    HitPlayer(pushDirection);
+                }
         }
     }
 
@@ -138,23 +151,28 @@ public class Enemy : MonoBehaviour
 
     void CheckVisible()
     {
-        DirectPlayerVisibility = DirectPlayerVisibility.Invisible;
+        DirectPlayerVisibilityState = DirectPlayerVisibility.Invisible;
+        ShootRangeState = ShootRange.TooFar;
 
         Ray ray = new Ray(this.transform.position, playerTransform.position - this.transform.position);
         Debug.DrawRay(ray.origin, ray.direction, Color.red);
         RaycastHit raycastHit;
-        if (Physics.Raycast(ray, out raycastHit, shootRange))
+        if (Physics.Raycast(ray, out raycastHit))
         {
             if (raycastHit.collider.transform == playerTransform)
             {
-                DirectPlayerVisibility = DirectPlayerVisibility.Visible;
+                DirectPlayerVisibilityState = DirectPlayerVisibility.Visible;
+                if (raycastHit.distance < shootRange)
+                {
+                    ShootRangeState = ShootRange.InRange;
+                }
             }
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, shootRange);
 
         Gizmos.color = Color.blue;

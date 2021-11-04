@@ -134,6 +134,14 @@ PrefabInstance:
       propertyPath: moveDistance
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
+      propertyPath: shootAccuracy
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
+      propertyPath: shootFireRatePerMin
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 163301256791212759, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1217,8 +1225,16 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
+      propertyPath: shootAccuracy
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: moveDirection.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
+      propertyPath: shootFireRatePerMin
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212759, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: m_RootOrder
@@ -1513,6 +1529,14 @@ PrefabInstance:
     - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: moveDistance
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
+      propertyPath: shootAccuracy
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
+      propertyPath: shootFireRatePerMin
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212759, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: m_RootOrder
@@ -2046,7 +2070,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524562224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.365393, y: -2.84, z: 10.826704}
+  m_LocalPosition: {x: 9.365393, y: -19.9, z: 10.826704}
   m_LocalScale: {x: 200, y: 1, z: 200}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2922,8 +2946,16 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
+      propertyPath: shootAccuracy
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: moveDirection.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
+      propertyPath: shootFireRatePerMin
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212759, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: m_RootOrder
