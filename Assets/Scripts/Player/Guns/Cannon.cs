@@ -15,6 +15,6 @@ public class Cannon : Gun
     protected override void Reload()
     {
         base.Reload();
-        cannon_Animator.SetTrigger("Reload");  //TODO
+        cannon_Animator.SetTrigger(GameConfig.Animation.cannonAnimatorReloading);  
     }
 }

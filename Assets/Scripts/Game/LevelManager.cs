@@ -8,9 +8,9 @@ public class LevelManager : MonoBehaviour
 {
     [Inject]
     UIScreenManager UIScreenManager;
-    [Inject(Id = "LoseTrigger")]
+    [Inject(Id = GameConfig.ZenjectConfig.loseTrigger)]
     PlayerTriggerAction playerLoseTrigger;
-    [Inject(Id = "WonTrigger")]
+    [Inject(Id = GameConfig.ZenjectConfig.wonTrigger)]
     PlayerTriggerAction playerWonTrigger;
 
     [SerializeField]

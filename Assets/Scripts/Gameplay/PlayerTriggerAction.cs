@@ -6,7 +6,7 @@ using Zenject;
 
 public class PlayerTriggerAction : MonoBehaviour
 {
-    [Inject(Id = "PlayerTransform")]
+    [Inject(Id = GameConfig.ZenjectConfig.playerTransform)]
     readonly Transform playerTransform;
 
     public UnityEvent TriggerEnterAction;

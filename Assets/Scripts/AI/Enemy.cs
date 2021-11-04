@@ -17,7 +17,7 @@ enum ShootRange
 
 public class Enemy : MonoBehaviour
 {
-    [Inject(Id = "PlayerTransform")]
+    [Inject(Id = GameConfig.ZenjectConfig.playerTransform)]
     readonly Transform playerTransform;
     [Inject]
     ImpactReceiver playerImpactReceiver;

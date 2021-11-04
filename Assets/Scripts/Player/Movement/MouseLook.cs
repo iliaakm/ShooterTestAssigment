@@ -34,8 +34,8 @@ public class MouseLook : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var horizontal = Input.GetAxis("Mouse X") * Time.deltaTime * turnSpeed;
-        var vertical = Input.GetAxis("Mouse Y") * Time.deltaTime * turnSpeed * (mouseInverted ? -1f : 1f);
+        var horizontal = Input.GetAxis(GameConfig.Axis.AxisMouseHorizontal) * Time.deltaTime * turnSpeed;
+        var vertical = Input.GetAxis(GameConfig.Axis.AxisMouseVertical) * Time.deltaTime * turnSpeed * (mouseInverted ? -1f : 1f);
         
         yaw += horizontal;
         pitch += vertical;
