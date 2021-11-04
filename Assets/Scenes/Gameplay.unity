@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: shootFireRatePerMin
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212759, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: m_RootOrder
@@ -201,6 +201,10 @@ PrefabInstance:
     - target: {fileID: 163301256791212763, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3993763637056713005, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
+      propertyPath: maxHealthPoints
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
@@ -1598,7 +1602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: shootFireRatePerMin
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212759, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: m_RootOrder
@@ -1995,7 +1999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: shootFireRatePerMin
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212759, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: m_RootOrder
@@ -2056,6 +2060,10 @@ PrefabInstance:
     - target: {fileID: 163301256791212763, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3993763637056713005, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
+      propertyPath: maxHealthPoints
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
@@ -3164,7 +3172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSpread: 0.03
   gunFireRatePerMin: 200
-  gunDamage: 1
+  gunDamage: 5
   gunProjectileSpeed: 100
   gunReloadTime: 1
   gunAmmoClipSize: 5
@@ -3635,7 +3643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212757, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: shootFireRatePerMin
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 163301256791212759, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
       propertyPath: m_RootOrder
@@ -3697,5 +3705,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: a8cce2a9f5d71644cb443d1fd9217add, type: 3}
