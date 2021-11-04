@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
     float enemyRadius;
     float timeBetweenShots;
     LineRenderer shotTracer;
+    DamageReceiver damageReceiver;
 
     DirectPlayerVisibility _directPlayerVisibilityState;
     DirectPlayerVisibility DirectPlayerVisibilityState
@@ -56,11 +57,11 @@ public class Enemy : MonoBehaviour
             _directPlayerVisibilityState = value;
             if (_directPlayerVisibilityState == DirectPlayerVisibility.Invisible)
             {
-                gameObject.layer = 8;
+                gameObject.layer = GameConfig.Layers.layerOutline;       //Outline ON
             }
             if (_directPlayerVisibilityState == DirectPlayerVisibility.Visible)
             {
-                gameObject.layer = 0;
+                gameObject.layer = GameConfig.Layers.layerDefault;       //Outline Off
             }
         }
     }
@@ -196,5 +197,10 @@ public class Enemy : MonoBehaviour
             Gizmos.DrawRay(startPos, transform.TransformDirection(moveDirection) * moveDistance);
         else
             Gizmos.DrawRay(transform.position, transform.TransformDirection(moveDirection) * moveDistance);
+    }
+
+    void Death()
+    {
+
     }
 }
