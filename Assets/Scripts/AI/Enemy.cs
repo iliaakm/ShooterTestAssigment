@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         set
         {
             _directPlayerVisibility = value;
-            if(_directPlayerVisibility == DirectPlayerVisibility.Invisible)
+            if (_directPlayerVisibility == DirectPlayerVisibility.Invisible)
             {
                 gameObject.layer = 8;
             }
@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour
     void HitPlayer(Vector3 direction)
     {
         playerImpactReceiver.AddImpact(direction, shootImpact);
-        print("Hit player");
+        Debug.Log("Hit player", this);
     }
 
     private void OnDestroy()
@@ -150,5 +150,17 @@ public class Enemy : MonoBehaviour
                 DirectPlayerVisibility = DirectPlayerVisibility.Visible;
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, shootRange);
+
+        Gizmos.color = Color.blue;
+        if (Application.isPlaying)
+            Gizmos.DrawRay(startPos, transform.TransformDirection(moveDirection) * moveDistance);
+        else
+            Gizmos.DrawRay(transform.position, transform.TransformDirection(moveDirection) * moveDistance);
     }
 }
