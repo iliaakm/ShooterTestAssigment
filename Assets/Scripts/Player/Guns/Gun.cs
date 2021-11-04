@@ -4,6 +4,12 @@ using UnityEngine;
 
 public abstract class Gun : MonoBehaviour
 {
+    enum GunState
+    {
+        Loaded,
+        Reloading
+    }
+
     [SerializeField]
     protected float gunAccuracy;
     [SerializeField]
@@ -32,12 +38,12 @@ public abstract class Gun : MonoBehaviour
     [SerializeField]
     protected AudioClip gunEmptySound;
 
+    GunState gunState { get; set; }
+    Coroutine reloadCor;    
+
     private int gunAmmoInClip;
     private float timeBetweenShots = 0f;
     private float nextFire = 0f;
-    private bool reloading = false;         //TODO заменить на state mashine
-
-    Coroutine reloadCor;    
 
     private void Start()
     {
@@ -76,7 +82,7 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual bool CanShoot()
     {
-        if (reloading)
+        if (gunState ==  GunState.Reloading)
         {
             //PlayEmptySound();
             return false;
@@ -114,9 +120,9 @@ public abstract class Gun : MonoBehaviour
     protected  virtual IEnumerator ReloadCor()
     {
         PlayReloadSound();
-        reloading = true;
+        gunState = GunState.Reloading;
         yield return new WaitForSeconds(gunReloadTime);
-        reloading = false;
+        gunState = GunState.Loaded;
         gunAmmoInClip = gunAmmoClipSize;
         reloadCor = null;
     }
