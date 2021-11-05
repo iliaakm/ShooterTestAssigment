@@ -26,12 +26,14 @@ public class LevelManager : MonoBehaviour
     {
         UIScreenManager.ShowWonScreen();
         StartCoroutine(ReloadLevel());
+        GameLog.Log("Won");
     }
 
     void Lose()
     {
         UIScreenManager.ShowGameOverScreen();
         StartCoroutine(ReloadLevel());
+        GameLog.Log("Lose");
     }
 
     IEnumerator ReloadLevel()
