@@ -91,6 +91,8 @@ public class Enemy : MonoBehaviour
             damageReceiver.onDeath = new UnityEngine.Events.UnityEvent();
         damageReceiver.onDeath.AddListener(Death);
 
+        moveSpeed = GameConfig.Agent.moveSpeed;
+
         startPos = transform.position;
         timeBetweenShots = 60f / shootFireRatePerMin;
 

@@ -33,4 +33,9 @@ public static class GameConfig
         public const int layerDefault = 0;
         public const int layerOutline = 8;
     }
+
+    public static class Agent
+    {
+        public const float moveSpeed = 1f;
+    }
 }
