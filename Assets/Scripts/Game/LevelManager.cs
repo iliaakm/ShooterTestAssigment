@@ -1,3 +1,4 @@
+using GameLogSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +34,8 @@ public class LevelManager : MonoBehaviour
     {
         UIScreenManager.ShowGameOverScreen();
         StartCoroutine(ReloadLevel());
-        GameLog.Log("Lose");
+        print("Lose");
+        //GameLog.Log("Lose");
     }
 
     IEnumerator ReloadLevel()

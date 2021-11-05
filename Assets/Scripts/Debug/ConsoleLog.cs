@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class ConsoleLog
+namespace GameLogSystem
 {
-    public static void Subscribe()
+    public static class ConsoleLog
     {
-        GameLogPublisher.RiseLogEvent += PrintConsole;
-    }
+        public static void Subscribe()
+        {
+            GameLogPublisher.RiseLogEvent += PrintConsole;
+        }
 
-    private static void PrintConsole(object sender, CustomEventArgs args)
-    {
-        Debug.Log(args.Message);
+        private static void PrintConsole(object sender, CustomEventArgs args)
+        {
+            Debug.Log(args.Message);
+        }
     }
 }
