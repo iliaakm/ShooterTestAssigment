@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class GameConfig
 {
@@ -27,7 +28,7 @@ public static class GameConfig
         public const string dissolveParameter = "_Alpha";
     }
 
-    public static class  Layers
+    public static class Layers
     {
         public const int layerDefault = 0;
         public const int layerOutline = 8;
@@ -36,5 +37,11 @@ public static class GameConfig
     public static class Agent
     {
         public const float moveSpeed = 1f;
+    }
+
+    public static class GameLog
+    {
+        public const string fileLogName = "GameLog.log";
+        public const string eventFileLogName = "GameEventsLog.log";
     }
 }
