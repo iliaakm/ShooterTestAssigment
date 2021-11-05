@@ -244,5 +244,7 @@ public class Enemy : MonoBehaviour
 
             yield return new WaitForSeconds(Time.deltaTime);
         }
+
+        Destroy(gameObject);
     }
 }
