@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField]
-    float movementSpeed;
+    float moveSpeed;
     [SerializeField]
     Vector2 moveDirection;
     [SerializeField]
@@ -113,14 +113,14 @@ public class Enemy : MonoBehaviour
 
         Debug.DrawRay(transform.position, transform.TransformDirection(moveDirection), Color.yellow);
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(moveDirection), out hit, enemyRadius + movementSpeed * Time.deltaTime))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(moveDirection), out hit, enemyRadius + moveSpeed * Time.deltaTime))
         {
             ChangeDirection();
             Debug.DrawLine(transform.position, hit.point, Color.blue);
         }
         else
         {
-            posDelta = movementSpeed * Time.deltaTime * moveDirection;
+            posDelta = moveSpeed * Time.deltaTime * moveDirection;
         }
 
         Vector3 newPos = transform.position + posDelta;
@@ -237,7 +237,7 @@ public class Enemy : MonoBehaviour
         while(time < 1)
         {
             alpha = dissolveCurve.Evaluate(time);
-            material.SetFloat("_Alpha", alpha);
+            material.SetFloat(GameConfig.Animation.dissolveParameter, alpha);
             time += Time.deltaTime;
 
             yield return new WaitForSeconds(Time.deltaTime);

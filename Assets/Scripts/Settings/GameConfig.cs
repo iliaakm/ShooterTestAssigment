@@ -25,6 +25,7 @@ public static class GameConfig
     public static class Animation
     {
         public const string cannonAnimatorReloading = "Reload";
+        public const string dissolveParameter = "_Alpha";
     }
 
     public static class  Layers
