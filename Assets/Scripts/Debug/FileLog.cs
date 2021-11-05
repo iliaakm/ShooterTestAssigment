@@ -15,7 +15,8 @@ namespace GameLogSystem
         private static void LogFile(object sender, CustomEventArgs args)
         {
             string filePath = Path.Combine(Application.persistentDataPath, GameConfig.GameLog.fileLogName);
-            File.WriteAllText(filePath, args.Message);
+            string message = args.Message + System.Environment.NewLine;
+            File.AppendAllText(filePath, message);
             Debug.Log($"Log to {filePath}");
         }
     }
