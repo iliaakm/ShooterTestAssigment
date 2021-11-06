@@ -49,4 +49,9 @@ public static class GameConfig
     {
         public const float ReturnAfterDelay = 3f;
     }
+
+    public static class Editor
+    {
+        public const float mouseInput = 0.2f;
+    }
 }

@@ -34,9 +34,15 @@ public class MouseLook : MonoBehaviour
 
     private void Update()
     {
+        if (Application.isEditor)
+            if (Time.time < GameConfig.Editor.mouseInput)      //start up filter
+            {
+                return;
+            }
+
         var horizontal = Input.GetAxis(GameConfig.Axis.AxisMouseHorizontal) * Time.deltaTime * turnSpeed;
         var vertical = Input.GetAxis(GameConfig.Axis.AxisMouseVertical) * Time.deltaTime * turnSpeed * (mouseInverted ? -1f : 1f);
-        
+
         yaw += horizontal;
         pitch += vertical;
 
