@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class Cannon : Gun
 {
+    [SerializeField]
     Animator cannon_Animator;
-
-    protected override void Start()
-    {
-        base.Start();
-        cannon_Animator = GetComponent<Animator>();
-    }
 
     protected override void Reload()
     {

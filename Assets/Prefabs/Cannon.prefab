@@ -110,6 +110,7 @@ MonoBehaviour:
   gunSoundSource: {fileID: 6450133339294888342}
   gunShootSound: {fileID: 8300000, guid: ddcda2afcfc97b644a670b47ed937197, type: 3}
   gunReloadSound: {fileID: 8300000, guid: 0e2fc5ebfe1c3e84c813eb28af550a27, type: 3}
+  cannon_Animator: {fileID: 6450133339294888424}
 --- !u!82 &6450133339294888342
 AudioSource:
   m_ObjectHideFlags: 0
