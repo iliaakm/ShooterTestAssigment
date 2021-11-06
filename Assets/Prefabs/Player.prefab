@@ -220,6 +220,7 @@ MonoBehaviour:
   headUpperAngleLimit: 85
   headLowerAngleLimit: -80
   mouseInverted: 1
+  head: {fileID: 1432588933837574888}
 --- !u!143 &1432588935250896106
 CharacterController:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ public class MouseLook : MonoBehaviour
     float headLowerAngleLimit = -80f;
     [SerializeField]
     bool mouseInverted = true;
+    [SerializeField]
+    Transform head;
 
     float yaw = 0f;
     float pitch = 0f;
@@ -19,12 +21,9 @@ public class MouseLook : MonoBehaviour
     Quaternion bodyStartOrientation;
     Quaternion headStartOrientation;
 
-    Transform head;
 
     private void Start()
     {
-        head = GetComponentInChildren<Camera>().transform;
-
         bodyStartOrientation = transform.localRotation;
         headStartOrientation = head.localRotation;
 
