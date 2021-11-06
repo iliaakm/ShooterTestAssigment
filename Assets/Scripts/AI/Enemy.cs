@@ -49,8 +49,11 @@ public class Enemy : MonoBehaviour
     float shotTracerTime;
     [SerializeField]
     AnimationCurve dissolveCurve;
+    [SerializeField]
+    CapsuleCollider capsuleCollider;
 
     Vector3 startPos;
+    [SerializeField]
     float enemyRadius;
     float timeBetweenShots;
     LineRenderer shotTracer;
@@ -83,7 +86,7 @@ public class Enemy : MonoBehaviour
         ShootRangeState = ShootRange.TooFar;
         AliveStatus = AliveStatus.Alive;
 
-        enemyRadius = GetComponent<CapsuleCollider>().radius;
+        enemyRadius = capsuleCollider.radius;
         shotTracer = GetComponent<LineRenderer>();
 
         damageReceiver = GetComponent<DamageReceiver>();
