@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class CrossHair : MonoBehaviour
 {
-    [SerializeField]
+    [Inject]
     Camera playerCamera;
+
     [SerializeField]
     CrossHairColors crosshairColors;
-
+    [SerializeField]
     Image crosshairImage;
     Ray ray;
-
-    private void Start()
-    {
-        crosshairImage = GetComponent<Image>();
-    }
 
     void Update()
     {
