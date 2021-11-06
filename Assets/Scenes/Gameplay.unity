@@ -2780,6 +2780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 1613255351}
   crosshairColors: {fileID: 11400000, guid: dbcb80df04ef1784aaf6786e51e8cddb, type: 2}
+  crosshairImage: {fileID: 1696613187}
 --- !u!1 &1877421230
 GameObject:
   m_ObjectHideFlags: 0
