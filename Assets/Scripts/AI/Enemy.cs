@@ -51,12 +51,13 @@ public class Enemy : MonoBehaviour
     AnimationCurve dissolveCurve;
     [SerializeField]
     CapsuleCollider capsuleCollider;
+    [SerializeField]
+    LineRenderer shotTracer;
 
     Vector3 startPos;
     [SerializeField]
     float enemyRadius;
     float timeBetweenShots;
-    LineRenderer shotTracer;
     DamageReceiver damageReceiver;
 
     DirectPlayerVisibility _directPlayerVisibilityState;
@@ -87,7 +88,6 @@ public class Enemy : MonoBehaviour
         AliveStatus = AliveStatus.Alive;
 
         enemyRadius = capsuleCollider.radius;
-        shotTracer = GetComponent<LineRenderer>();
 
         damageReceiver = GetComponent<DamageReceiver>();
         if (damageReceiver.onDeath == null)
