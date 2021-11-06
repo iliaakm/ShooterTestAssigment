@@ -102,7 +102,7 @@ MonoBehaviour:
   gunSpread: 0.03
   gunFireRatePerMin: 200
   gunDamage: 5
-  gunProjectileSpeed: 100
+  gunProjectileSpeed: 50
   gunReloadTime: 1
   gunAmmoClipSize: 5
   gunProjectilePref: {fileID: 7805768862353676485, guid: d91cc5bf1b5b91046926f97f4140f1c9, type: 3}
