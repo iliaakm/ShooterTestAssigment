@@ -12,14 +12,10 @@ public class PlayerMovement : MonoBehaviour
     float gravity = 20;
     [Range(0, 10), SerializeField]
     float airControl = 5;
-
-    Vector3 moveDirection = Vector3.zero;
+    [SerializeField]
     CharacterController controller;
 
-    private void Start()
-    {
-        controller = GetComponent<CharacterController>();
-    }
+    Vector3 moveDirection = Vector3.zero;
 
     private void FixedUpdate()
     {

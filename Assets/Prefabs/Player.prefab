@@ -255,6 +255,7 @@ MonoBehaviour:
   jumpHeight: 2
   gravity: 20
   airControl: 5
+  controller: {fileID: 1432588935250896106}
 --- !u!114 &1432588935250896110
 MonoBehaviour:
   m_ObjectHideFlags: 0
