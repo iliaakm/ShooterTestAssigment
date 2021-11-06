@@ -32,7 +32,7 @@ public class MouseLook : MonoBehaviour
         Cursor.visible = false;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         var horizontal = Input.GetAxis(GameConfig.Axis.AxisMouseHorizontal) * Time.deltaTime * turnSpeed;
         var vertical = Input.GetAxis(GameConfig.Axis.AxisMouseVertical) * Time.deltaTime * turnSpeed * (mouseInverted ? -1f : 1f);
