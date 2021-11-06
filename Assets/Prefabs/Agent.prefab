@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 163301256791212761}
   - component: {fileID: 163301256791212762}
   - component: {fileID: 163301256791212757}
+  - component: {fileID: 3582436331620633365}
   - component: {fileID: -5189460722615903107}
   - component: {fileID: 3993763637056713005}
   m_Layer: 0
@@ -111,9 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d636f6717266cfd4cb4faf1e19e1a0f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  moveDirection: {x: 1, y: 0}
-  moveDistance: 5
   shootRange: 15
   shootFireRatePerMin: 60
   shootImpact: 3000
@@ -143,10 +141,25 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  capsuleCollider: {fileID: 163301256791212762}
   shotTracer: {fileID: -5189460722615903107}
   damageReceiver: {fileID: 3993763637056713005}
-  enemyRadius: 0
+--- !u!114 &3582436331620633365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163301256791212763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d178f83814f49478459daa8c80a823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
+  moveDirection: {x: 0, y: 0}
+  moveDistance: 3
+  capsuleCollider: {fileID: 163301256791212762}
+  enemy: {fileID: 163301256791212757}
 --- !u!120 &-5189460722615903107
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -188,8 +201,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 3.1400023, y: -0.25625515, z: -7.9}
+  - {x: 5.0046988, y: -0.36251155, z: -8.364775}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -198,7 +211,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.018181793
+        value: 0.012200348
         inSlope: 0
         outSlope: 0
         tangentMode: 0
