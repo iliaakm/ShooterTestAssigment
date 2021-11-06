@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 moveDirection = Vector3.zero;
 
-    private void FixedUpdate()
+    private void Update()
     {
         var input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         input *= moveSpeed;
