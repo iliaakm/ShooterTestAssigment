@@ -56,7 +56,7 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (Input.GetButton("Fire1"))       //TODO take magic string from confiig 
+        if (Input.GetButton(GameConfig.Axis.axisFire))       
         {
             TryShoot();
         }
