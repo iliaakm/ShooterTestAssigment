@@ -17,7 +17,7 @@ public class ReturnAfterDelay : MonoBehaviour, IObjectPoolNotifier
 
     IEnumerator DoReturnAfterDelay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(GameConfig.Pooling.ReturnAfterDelay);
         gameObject.ReturnToPool();
     }
 }
