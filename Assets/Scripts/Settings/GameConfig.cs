@@ -44,4 +44,9 @@ public static class GameConfig
         public const string fileLogName = "GameLog.log";
         public const string eventFileLogName = "GameEventsLog.log";
     }
+
+    public static class Pooling
+    {
+        public const float ReturnAfterDelay = 3f;
+    }
 }
