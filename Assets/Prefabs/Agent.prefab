@@ -145,6 +145,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   capsuleCollider: {fileID: 163301256791212762}
   shotTracer: {fileID: -5189460722615903107}
+  damageReceiver: {fileID: 3993763637056713005}
   enemyRadius: 0
 --- !u!120 &-5189460722615903107
 LineRenderer:

@@ -53,12 +53,13 @@ public class Enemy : MonoBehaviour
     CapsuleCollider capsuleCollider;
     [SerializeField]
     LineRenderer shotTracer;
+    [SerializeField]
+    DamageReceiver damageReceiver;
 
     Vector3 startPos;
     [SerializeField]
     float enemyRadius;
     float timeBetweenShots;
-    DamageReceiver damageReceiver;
 
     DirectPlayerVisibility _directPlayerVisibilityState;
     DirectPlayerVisibility DirectPlayerVisibilityState
@@ -89,7 +90,6 @@ public class Enemy : MonoBehaviour
 
         enemyRadius = capsuleCollider.radius;
 
-        damageReceiver = GetComponent<DamageReceiver>();
         if (damageReceiver.onDeath == null)
             damageReceiver.onDeath = new UnityEngine.Events.UnityEvent();
         damageReceiver.onDeath.AddListener(Death);
