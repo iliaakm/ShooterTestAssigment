@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class GunProjectile : DamageGiver, IObjectPoolNotifier
 {
+    [SerializeField]
+    Rigidbody projectileRigidbody;
+    [SerializeField]
+    ParticleSystem hitParticle;
+
     public float MoveSpeed { get; set; }
     public Vector3 MoveDirection { get; set; }
 
-    ParticleSystem hitParticle;
     float poolReturnDelay;
-
-    Rigidbody projectileRigidbody;
 
     private void Awake()
     {
-        projectileRigidbody = GetComponent<Rigidbody>();
-        hitParticle = GetComponent<ParticleSystem>();
         if (OnHit == null)
             OnHit = new UnityEngine.Events.UnityEvent();
         OnHit.AddListener(ShellStop);
