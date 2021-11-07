@@ -167,6 +167,11 @@ namespace EnemyAI
 
         void Death()
         {
+            if(AliveStatusState == AliveStatus.Dead)
+            {
+                return;
+            }    
+
             AliveStatusState = AliveStatus.Dead;
             DirectPlayerVisibilityState = DirectPlayerVisibility.Visible;
             StartCoroutine(DeathCor());
