@@ -45,7 +45,9 @@ namespace EnemyAI
         [SerializeField]
         LineRenderer shotTracer;
         [SerializeField]
-        DamageReceiver damageReceiver;   
+        DamageReceiver damageReceiver;
+        [SerializeField]
+        Outline outline;
 
         public ShootRange ShootRangeState { get; set; }
         public AliveStatus AliveStatusState { get; set; }
@@ -61,11 +63,11 @@ namespace EnemyAI
                 _directPlayerVisibilityState = value;
                 if (_directPlayerVisibilityState == DirectPlayerVisibility.Invisible)
                 {
-                    gameObject.layer = GameConfig.Layers.layerOutline;       //Outline ON
+                    outline.OutlineOn();
                 }
                 if (_directPlayerVisibilityState == DirectPlayerVisibility.Visible)
                 {
-                    gameObject.layer = GameConfig.Layers.layerDefault;       //Outline Off
+                    outline.OutlineOff();
                 }
             }
         }
