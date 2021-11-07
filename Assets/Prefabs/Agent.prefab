@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 163301256791212762}
   - component: {fileID: 163301256791212757}
   - component: {fileID: 3582436331620633365}
-  - component: {fileID: -5189460722615903107}
+  - component: {fileID: 4012114817487947126}
   - component: {fileID: 3993763637056713005}
+  - component: {fileID: -5189460722615903107}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -143,6 +144,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   shotTracer: {fileID: -5189460722615903107}
   damageReceiver: {fileID: 3993763637056713005}
+  outline: {fileID: 4012114817487947126}
 --- !u!114 &3582436331620633365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +162,31 @@ MonoBehaviour:
   moveDistance: 3
   capsuleCollider: {fileID: 163301256791212762}
   enemy: {fileID: 163301256791212757}
+--- !u!114 &4012114817487947126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163301256791212763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b46b2388022634a9d071a04936812c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3993763637056713005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163301256791212763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04558c36526fb0f49b1b04a20f224824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoints: 15
 --- !u!120 &-5189460722615903107
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -201,8 +228,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 3.1400023, y: -0.25625515, z: -7.9}
-  - {x: 5.0046988, y: -0.36251155, z: -8.364775}
+  - {x: 7.1199985, y: -0.25625515, z: -7.9}
+  - {x: 4.070943, y: -0.36251163, z: 0.9771404}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -258,16 +285,3 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &3993763637056713005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 163301256791212763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04558c36526fb0f49b1b04a20f224824, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealthPoints: 15
