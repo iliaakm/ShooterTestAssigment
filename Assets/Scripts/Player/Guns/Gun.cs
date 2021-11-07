@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+enum GunState
+{
+    Loaded,
+    Reloading
+}
+
 public abstract class Gun : MonoBehaviour
 {
-    enum GunState
-    {
-        Loaded,
-        Reloading
-    }
-
     [Inject]
     ObjectPool pool;
 
@@ -40,7 +40,7 @@ public abstract class Gun : MonoBehaviour
     [SerializeField]
     protected AudioClip gunReloadSound;
 
-    GunState gunState { get; set; }
+    GunState GunState { get; set; }
     Coroutine reloadCor;    
 
     private int gunAmmoInClip;
@@ -84,7 +84,7 @@ public abstract class Gun : MonoBehaviour
 
     protected virtual bool CanShoot()
     {
-        if (gunState ==  GunState.Reloading)
+        if (GunState ==  GunState.Reloading)
         {
             return false;
         }
@@ -122,9 +122,9 @@ public abstract class Gun : MonoBehaviour
     protected  virtual IEnumerator ReloadCor()
     {
         PlayReloadSound();
-        gunState = GunState.Reloading;
+        GunState = GunState.Reloading;
         yield return new WaitForSeconds(gunReloadTime);
-        gunState = GunState.Loaded;
+        GunState = GunState.Loaded;
         gunAmmoInClip = gunAmmoClipSize;
         reloadCor = null;
     }
